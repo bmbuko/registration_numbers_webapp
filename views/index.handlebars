@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/registration_number.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Registration numbers</h1>
+
+            <div class="message">
+
+            </div>
+
+
+
+            <form action="/registrationsNum" method="POST">
+                <div>
+                    <input type="text" class="regNumberEntered" placeholder="enter a registration number">
+                </div>
+                <button type="submit" class="addRegNumber btn ">Add reg number</button>
+                <div class="filter">
+                    <strong>Filter by town</strong>
+
+				<input type="radio" name="town" value="">Show all
+				<input type="radio" name="town" value="CY">Bellville
+				<input type="radio" name="town" value="CJ">Paarl
+				<input type="radio" name="town" value="CA"> Cape Town
+                
+
+                </div>
+                <hr>
+                <div class="regNumbers">
+                    <!-- <i>Reg numbers to be added here...</i> -->
+
+
+            </form>
+
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>

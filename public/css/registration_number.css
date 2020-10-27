@@ -1,0 +1,16 @@
+
+
+.container {
+	width: 90%;
+	margin:	auto;
+	
+	
+}
+
+.btn {
+	margin: 1em;
+	padding: 1em;
+	font-size: 1em;
+	border-radius: 0.25em;
+	background-color: yellowgreen;
+}
