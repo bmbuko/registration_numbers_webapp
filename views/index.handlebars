@@ -21,22 +21,30 @@
 
             <form action="/registrationsNum" method="POST">
                 <div>
-                    <input type="text" class="regNumberEntered" placeholder="enter a registration number">
+                    <input type="text" class="regNumberEntered" placeholder="enter a registration number" name="reginum">
+
                 </div>
-                <button type="submit" class="addRegNumber btn ">Add reg number</button>
+                <button type="submit" class="addRegNumber  ">Add reg number</button>
                 <div class="filter">
                     <strong>Filter by town</strong>
 
 				<input type="radio" name="town" value="">Show all
-				<input type="radio" name="town" value="CY">Bellville
-				<input type="radio" name="town" value="CJ">Paarl
-				<input type="radio" name="town" value="CA"> Cape Town
+				<input type="radio" name="town" value="1">Paarl
+				<input type="radio" name="town" value="2">Stellenbosch
+				<input type="radio" name="town" value="3"> Cape Town
                 
 
                 </div>
                 <hr>
+                    {{#each reg}}
                 <div class="regNumbers">
-                    <!-- <i>Reg numbers to be added here...</i> -->
+                    
+                           {{this.reg_number}}
+                        
+                       
+                    
+                </div>
+                {{/each}}
 
 
             </form>
