@@ -44,4 +44,8 @@ input[type=text], select {
 }
 body{
 	background-color: silver;
+}.success{
+	font-family: sans-serif;
+	font-size: small;
+	color: green;
 }

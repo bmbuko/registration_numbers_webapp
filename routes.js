@@ -23,9 +23,13 @@ const addReg = async (req, res) => {
       
         // invalid
         req.flash('info', 'invalid reg format');
-        res.redirect('/')
+
         return;
   
+    }
+    else(regN!=="")
+    req.flash()
+
     }
   
     var msg = await regNum.addRegNumber(regN)
