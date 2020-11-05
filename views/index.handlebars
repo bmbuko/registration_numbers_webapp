@@ -20,34 +20,48 @@
 
 
             <form action="/registrationsNum" method="POST">
+            <div class="error">
+        {{#if messages.info}}
+        <div class="entry">
+            <h1> {{messages.info}}</h1>
+        </div>
+        {{/if}}
+            </div>
                 <div>
-                    <input type="text" class="regNumberEntered" placeholder="enter a registration number" name="reginum">
+                    <input type="text" class="regNumberEntered" placeholder="enter a registration number"
+                        name="reginum">
 
                 </div>
-                <button type="submit" class="addRegNumber  ">Add reg number</button>
+                <button type="submit" class="addRegNumber btn">Add</button>
+            </form>
+            
+            <form action="/registrationsFilter" method="POST">
                 <div class="filter">
                     <strong>Filter by town</strong>
 
-				<input type="radio" name="town" value="">Show all
-				<input type="radio" name="town" value="1">Paarl
-				<input type="radio" name="town" value="2">Stellenbosch
-				<input type="radio" name="town" value="3"> Cape Town
-                
+                    <input type="radio" name="town" value="all">Show all
+                    <input type="radio" name="town" value="1">Paarl
+                    <input type="radio" name="town" value="2">Cape Town
+                    <input type="radio" name="town" value="3">Stellenbosch
+                    <button type="submit" class="filter">filter</button>
+                    
 
                 </div>
+                 <button  on type="submit"><a href="/reset"> reset</a></button>
+                 </form>
                 <hr>
-                    {{#each reg}}
+                {{#each reg}}
                 <div class="regNumbers">
-                    
-                           {{this.reg_number}}
-                        
-                       
-                    
+
+                    {{this.reg_number}}
+
+
+
                 </div>
                 {{/each}}
 
+            
 
-            </form>
 
         </div>
     </div>

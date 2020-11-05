@@ -8,6 +8,9 @@ module.exports = function registration(pool) {
     // }
 
     async function addRegNumber(regNumbers) {
+
+        //console.log(regNumbers);
+
         if (regNumbers !== "") {
 
             regNumbers = regNumbers.toUpperCase()
@@ -16,21 +19,27 @@ module.exports = function registration(pool) {
             const regNum = regNumbers.substring(0, 2)
 
             let results = await pool.query('select id from town where starts_with = $1', [regNum])
-            let townId = results.rows[0].id
-            let regies;
-            if (townId > 0) {
-                regies = await pool.query('select reg_number from registrations where reg_number=$1', [regNumbers])
+            if (results.rowCount > 0) {
+                let townId = results.rows[0].id
+                let regies;
+                if (townId > 0) {
+                    regies = await pool.query('select reg_number from registrations where reg_number=$1', [regNumbers])
+                }
+                // only add the reg number if it's not already in the database
+                if (regies.rowCount == 0) {
+                    await pool.query('insert into registrations(reg_number,town_id) values ($1,$2)', [regNumbers, townId]);
+                    return "Reg number added";
+                } else {
+                    return "Reg number already added";
+                }
+            } else {
+                // invalid town / reg number
+                // return false;
+                return "Invalid regnumber - town not supported..."
             }
-
-            if (regies.rowCount < 1) {
-                await pool.query('insert into registrations(reg_number,town_id) values ($1,$2)', [regNumbers, townId]);
-
-            }
-
-
         }
         else {
-            return false//(because input is blank)
+            return "No reg number supplied";
         }
 
     }
@@ -41,20 +50,34 @@ module.exports = function registration(pool) {
         return result.rows
     }
 
-    async function filterByTown(town_tag) {
-if (town_tag ="all"){
-const allRegs = "select reg_numbers from registrations"
-const results = await pool.query(allRegs)
-return results.rows
-}
+    async function filter(town_tag) {
+        if (town_tag == "all") {
+            const allRegs = "select reg_number from registrations"
+            const results = await pool.query(allRegs)
+            return results.rows
+        }
+        else {
+            const id = await pool.query(`select id from town where starts_with = $1`, [town_tag])
+            const idTown = id.rows[0].id
 
+            const sqlRegs = 'select reg_number from registrations where town_id = $1'
+            const results = await pool.query(sqlRegs, [idTown])
+            return results.rows;
+
+        }
+
+    }
+    async function resetData() {
+        const deleteSQl = "delete from registrations"
+        await pool.query(deleteSQl)
     }
 
 
     return {
         addRegNumber,
-        filterByTown,
-        showReg
+        filter,
+        showReg,
+        resetData
 
     }
 
