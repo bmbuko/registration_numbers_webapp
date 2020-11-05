@@ -39,7 +39,7 @@ input[type=text], select {
 	box-sizing: border-box;
 }.error{
 	font-family: sans-serif;
-	font-size: xx-small;
+	font-size: small;
 	color: red;
 }
 body{

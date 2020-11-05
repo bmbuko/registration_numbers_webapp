@@ -4,6 +4,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const registration = require("./reg")
 const bodyParser = require('body-parser');
+const rout = require('./routes')
 
 const pg = require("pg")
 const Pool = pg.Pool;
@@ -14,6 +15,7 @@ const pool = new Pool({
 });
 let app = express()
 const regNum = registration(pool)
+const routing=rout(regNum)
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -29,64 +31,14 @@ app.use(flash());
 
 
 
-app.get('/', async function (req, res) {
-  res.render('index', {
-    title: 'Home'
-  });
-});
+app.get('/',routing.display)
 
-app.post('/registrationsNum', async (req, res) => {
+app.post('/registrationsNum',routing.addReg)
 
-  console.log(req.body);
-  const regN = req.body.reginum
+app.post('/registrationsFilter',routing.filterRegs)
+app.get("/reset",routing.clearData)
 
 
-
-  if (regN == "") {
-    req.flash('info', 'please add reg');
-    res.redirect('/')
-  }
-
-  const FORMAT_REGEX = /^C[JLA] [\d\b-]*/;
-
-  if(!FORMAT_REGEX.test(regN)) {
-    
-      // invalid
-      req.flash('info', 'invalid reg format');
-      res.redirect('/')
-      return;
-
-  }
-
-  var msg = await regNum.addRegNumber(regN)
-
-  const regNumbers = await regNum.showReg();
-  // console.log(regNumbers)
-  req.flash('info', msg);
-
-  res.render('index', {
-    reg: regNumbers
-  });
-
-});
-
-app.post('/registrationsFilter', async (req, res) => {
-
-  const regee = req.body.town
-  const regNumbers = await regNum.filter(regee);
-
-  console.log(regNumbers);
-
-
-  res.render('index', {
-    reg: regNumbers
-  })
-})
-app.get("/reset", async (req, res) => {
-  await regNum.resetData()
-  res.redirect('/');
-
-});
 
 
 

@@ -1,7 +1,7 @@
 language: node_js
 
 env:
- DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/reg'
+ DATABASE_URL= postgresql://postgres@localhost:5432/reg
 
 node_js:  
   - "12"
