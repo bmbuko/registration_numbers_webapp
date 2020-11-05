@@ -27,10 +27,9 @@ const addReg = async (req, res) => {
         return;
   
     }
-    else(regN!=="")
-    req.flash()
+    
 
-    }
+    
   
     var msg = await regNum.addRegNumber(regN)
   
