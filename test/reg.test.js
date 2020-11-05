@@ -80,7 +80,7 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 123-123');
         await regNum.addRegNumber('CA 124-124');
 
-        const filterCapeTown = await regNum.filter('CA');
+        const filterCapeTown = await regNum.filter('2');
         const result = filterCapeTown.length
         assert.equal(3, result);
 
@@ -92,7 +92,7 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 123-123');
         await regNum.addRegNumber('CA 124-124');
 
-        const filterPaarl = await regNum.filter('CJ');
+        const filterPaarl = await regNum.filter('1');
         const result = filterPaarl.length
         assert.equal(1, result);
 
@@ -104,7 +104,7 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 123-123');
         await regNum.addRegNumber('CA 124-124');
 
-        const filterStellenbosch = await regNum.filter('CJ');
+        const filterStellenbosch = await regNum.filter('3');
         const result = filterStellenbosch.length
         assert.equal(1, result);
 

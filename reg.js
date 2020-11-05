@@ -57,11 +57,10 @@ module.exports = function registration(pool) {
             return results.rows
         }
         else {
-            const id = await pool.query(`select id from town where starts_with = $1`, [town_tag])
-            const idTown = id.rows[0].id
+            
 
             const sqlRegs = 'select reg_number from registrations where town_id = $1'
-            const results = await pool.query(sqlRegs, [idTown])
+            const results = await pool.query(sqlRegs, [town_tag])
             return results.rows;
 
         }
