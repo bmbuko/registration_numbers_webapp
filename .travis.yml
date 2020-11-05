@@ -1,0 +1,14 @@
+language: node_js
+
+env:
+ DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/reg_numbers_tests'
+
+node_js:  
+  - "12"
+
+before_script:
+  - psql -c 'create database  reg_numbers_tests;' -U postgres
+  - psql -U postgres -d reg_numbers_tests -a -f tests.sql
+
+services:
+  - postgresql
