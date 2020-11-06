@@ -21,18 +21,16 @@
 
             <form action="/registrationsNum" method="POST">
             <div class="error">
-        {{#if messages.error}}
-        <div class="entry">
+        
+       
+        {{#if messages}}
+        <div class="entry {{messages.color}}">
             <p> {{messages.info}}</p>
         </div>
         {{/if}}
-            </div>
-             <div class="success">
-        {{#if messages.success}}
-        <div class="entry">
-            <p> {{messages.info}}</p>
-        </div>
-        {{/if}}
+
+
+
             </div>
                 <div>
                     <input type="text" class="regNumberEntered" placeholder="enter a registration number"

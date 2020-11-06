@@ -28,9 +28,15 @@ module.exports = function registration(pool) {
                 // only add the reg number if it's not already in the database
                 if (regies.rowCount == 0) {
                     await pool.query('insert into registrations(reg_number,town_id) values ($1,$2)', [regNumbers, townId]);
-                    return "Reg number added";
+                    return {
+                        message:"Reg number added",
+                        color: "success"
+                    } ;
                 } else {
-                    return "Reg number already added";
+                    return {
+                        message:"Reg number already added",
+                        color: "error"
+                    };
                 }
             } else {
                 // invalid town / reg number
