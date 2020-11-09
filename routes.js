@@ -1,12 +1,12 @@
 module.exports = function route(regNum) {
-  
-  
+
+
   const display = async function (req, res) {
     res.render('index', {
       title: 'Home'
     });
   };
-  
+
   const addReg = async (req, res) => {
 
     // console.log(req.body);
@@ -16,29 +16,26 @@ module.exports = function route(regNum) {
 
     if (regN == "") {
 
-      req.flash('info', 'please add reg');
+      req.flash('info', 'Please add registration');
 
       res.redirect('/')
     }
 
 
-    const FORMAT_REGEX = /^C[JLA] [\d\b-]*/;
+    // const FORMAT_REGEX = /^C[JLA] [\d\b-]*/;
+    const FORMAT_REGEX = /C[JLA]\s\d{3,6}D\d{3,6}|C[JLA]\s\d{3,6}/gi
 
     if (!FORMAT_REGEX.test(regN)) {
+      req.flash('info', 'Invalid reg format');
 
-      // invalid
-      req.flash('info', 'invalid reg format');
-
+      res.redirect('/');
       return;
-
     }
 
 
 
 
     var msg = await regNum.addRegNumber(regN)
-    console.log(msg);
-
 
     const regNumbers = await regNum.showReg();
     // console.log(regNumbers)
@@ -50,7 +47,7 @@ module.exports = function route(regNum) {
     });
 
   }
-  
+
   const filterRegs = async (req, res) => {
 
     const regee = req.body.town
@@ -63,9 +60,10 @@ module.exports = function route(regNum) {
       reg: regNumbers
     })
   }
-  
+
   const clearData = async (req, res) => {
-    await regNum.resetData()
+    await regNum.resetData(),
+      req.flash("success", "Successfully cleared the list")
     res.redirect('/');
   }
 

@@ -81,8 +81,19 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 124-124');
 
         const filterCapeTown = await regNum.filter('2');
-        const result = filterCapeTown.length
-        assert.equal(3, result);
+        
+        assert.deepEqual([
+            {
+              reg_number: 'CA 123'
+            },
+            {
+              reg_number: 'CA 123-123'
+            },
+            {
+              reg_number: 'CA 124-124'
+            }
+          ]
+          ,filterCapeTown );
 
     });
     it("should be able to filter registrations from  Paarl ", async () => {
@@ -93,8 +104,13 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 124-124');
 
         const filterPaarl = await regNum.filter('1');
-        const result = filterPaarl.length
-        assert.equal(1, result);
+        
+        assert.deepEqual([
+            {
+              reg_number: 'CJ 124-124'
+            }
+          ]
+          , filterPaarl);
 
     });
     it("should be able to filter registrations from  Stellenbosch", async () => {
@@ -105,8 +121,13 @@ describe('Registration Numbers', function () {
         await regNum.addRegNumber('CA 124-124');
 
         const filterStellenbosch = await regNum.filter('3');
-        const result = filterStellenbosch.length
-        assert.equal(1, result);
+        
+        assert.deepEqual([
+            {
+              reg_number: 'CL 123 321'
+            }
+          ]
+          , filterStellenbosch );
 
     });
     it("should be able to filter all registration numbers entered", async () => {

@@ -12,6 +12,7 @@ const Pool = pg.Pool;
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex-coder:pg123@localhost:5432/reg_numbers'
 const pool = new Pool({
   connectionString
+
 });
 let app = express()
 const regNum = registration(pool)
@@ -49,9 +50,7 @@ app.get("/reset",routing.clearData)
 
 
 let PORT = process.env.PORT || 5011
-
-
-  ;
+;
 app.listen(PORT, function () {
 
 });
