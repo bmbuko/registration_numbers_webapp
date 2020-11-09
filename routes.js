@@ -23,7 +23,7 @@ module.exports = function route(regNum) {
 
 
     // const FORMAT_REGEX = /^C[JLA] [\d\b-]*/;
-    const FORMAT_REGEX = /C[JLA]\s\d{3,6}D\d{3,6}|C[JLA]\s\d{3,6}/gi
+    const FORMAT_REGEX = /^C[JLA]\s\d{3,6}-\d{3,6}$|C[JLA]\s\d{3,6}$/gmi
 
     if (!FORMAT_REGEX.test(regN)) {
       req.flash('info', 'Invalid reg format');
