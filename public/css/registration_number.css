@@ -23,10 +23,12 @@
 	border-radius: 0.25em;
 	padding: 1em;
 	margin: 0.5em;
-	width: 7em;
-	text-align: center;
+
+	/* text-align: center; */
 	font-weight: bold;
-	float: left;
+	/* float: left; */
+	display: inline-block;
+	
 
 }
 .row{
