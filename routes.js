@@ -2,8 +2,10 @@ module.exports = function route(regNum) {
 
 
   const display = async function (req, res) {
+    const regNumbers = await regNum.showReg();
     res.render('index', {
-      title: 'Home'
+      title: 'Home',
+      reg: regNumbers
     });
   };
 

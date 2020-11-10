@@ -29,6 +29,9 @@
 	float: left;
 
 }
+.row{
+	display: flex;
+}
 input[type=text], select {
 	width: 50%;
 	padding: 12px 20px;
