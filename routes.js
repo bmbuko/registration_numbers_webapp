@@ -18,7 +18,7 @@ module.exports = function route(regNum) {
 
     if (regN == "") {
 
-      req.flash('info', 'Please add registration');
+      req.flash('info', 'Please add registration number');
 
       res.redirect('/')
     }
@@ -28,7 +28,7 @@ module.exports = function route(regNum) {
     const FORMAT_REGEX = /^C[JLA]\s\d{3,6}-\d{3,6}$|C[JLA]\s\d{3,6}$/gmi
 
     if (!FORMAT_REGEX.test(regN)) {
-      req.flash('info', 'Invalid registration format');
+      req.flash('info', 'Invalid registration number format');
 
       res.redirect('/');
       return;
