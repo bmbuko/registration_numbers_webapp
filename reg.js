@@ -29,12 +29,12 @@ module.exports = function registration(pool) {
                 if (regies.rowCount == 0) {
                     await pool.query('insert into registrations(reg_number,town_id) values ($1,$2)', [regNumbers, townId]);
                     return {
-                        message: "Reg number added",
+                        message: "Registration number added",
                         color: "success"
                     };
                 } else {
                     return {
-                        message: "Reg number already added",
+                        message: "Registration number already added",
                         color: "error"
                     };
                 }

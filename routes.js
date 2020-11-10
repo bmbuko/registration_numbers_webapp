@@ -28,7 +28,7 @@ module.exports = function route(regNum) {
     const FORMAT_REGEX = /^C[JLA]\s\d{3,6}-\d{3,6}$|C[JLA]\s\d{3,6}$/gmi
 
     if (!FORMAT_REGEX.test(regN)) {
-      req.flash('info', 'Invalid reg format');
+      req.flash('info', 'Invalid registration format');
 
       res.redirect('/');
       return;
